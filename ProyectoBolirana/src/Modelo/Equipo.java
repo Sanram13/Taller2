@@ -1,7 +1,7 @@
 package Modelo;
 
 
-public class  {
+public class Equipo {
     private Jugador[] jugadores;
     private Capitan capitan;
     private String nombre;
