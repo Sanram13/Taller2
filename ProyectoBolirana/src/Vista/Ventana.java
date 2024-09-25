@@ -18,7 +18,8 @@ public class Ventana {
         return lector.nextLine();
     }
     public int mostrarMenu() {
-        System.out.println("Bienvenido a la BOLIRANA");
+        System.out.println("Bienvenido ");
+        System.out.println("ESTE ES EL JUEGO DE  LA BOLIRRANA");
         System.out.println("Menú");
         System.out.println("1. Crear Equipo");
         System.out.println("2. Iniciar Partido");
