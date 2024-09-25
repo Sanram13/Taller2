@@ -3,6 +3,10 @@ package Controlador;
 
 import Modelo.Capitan;
 import Modelo.Equipo;
+import Modelo.Jugador;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -30,6 +34,7 @@ public class ControlEquipo {
         this.indice++;
         this.equipo.setNumero(indice);
         equipos.add(equipo);
+        guardarEquiposArchivo("src/Directo");
     }
 
     public void sorteoDeJugadoresEquipo(int numeroEquipo) {
@@ -83,6 +88,30 @@ public class ControlEquipo {
         }
         return false;
     }
+     public void guardarEquiposArchivo(String rutaArchivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            for (Equipo equipo : equipos) {
+                writer.write("Equipo: " + equipo.getNombre() + "\n");
+                writer.write("Número del equipo: " + equipo.getNumero() + "\n");
+                
+                //datos Capitan
+                Capitan capitan = equipo.getCapitan();
+                writer.write("Capitán: " + capitan.getNombre() + ", Cédula: " + capitan.getCedula() + ", Edad: " + capitan.getEdad() 
+                        + ", Años de experiencia: " + capitan.getTiempoExperiencia() + "\n");
+                
+                //datos Jugadores
+                writer.write("Jugadores:\n");
+                for (Jugador jugador : equipo.getJugadores()) {
+                    writer.write("- " + jugador.getNombre() + ", Cédula: " + jugador.getCedula() + ", Edad: " + jugador.getEdad() 
+                            + ", Número: " + jugador.getNumero() + "\n");
+                }
+                writer.write("\n");
+            }
+            writer.flush();
+            this.fachada.getVentana().mostrarMensaje("Los equipos se han guardado correctamente en el archivo: " + rutaArchivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            this.fachada.getVentana().mostrarMensaje("Error al guardar los equipos en el archivo");
+        }
+    }
 }
-
-
