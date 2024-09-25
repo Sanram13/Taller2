@@ -1,5 +1,6 @@
-
 package Controlador;
+
+
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -54,7 +55,7 @@ public class ControlJuego {
 
     private void cargarPuntajesDesdeProperties() {
         Properties propiedades = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("resources/Propiedades.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("Specs/Propiedades.properties")) {
             if (input == null) {
                 System.out.println("No se pudo encontrar el archivo bolirrana.properties");
                 return;

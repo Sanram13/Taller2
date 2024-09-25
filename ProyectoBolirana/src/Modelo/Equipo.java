@@ -1,11 +1,13 @@
 package Modelo;
 
 
+
 public class Equipo {
     private Jugador[] jugadores;
     private Capitan capitan;
     private String nombre;
     private int numero;
+    private int indiceJugador = 0;
     public Equipo(Capitan capitan) {
         this.jugadores = new Jugador[5];
         this.capitan = capitan;
@@ -25,7 +27,6 @@ public class Equipo {
     public void setCapitan(Capitan capitan) {
         this.capitan = capitan;
     }
-//Hasta acá, abajo si es cosas que sabemos botsote
     public int getNumero() {
         return numero;
     }
@@ -40,5 +41,13 @@ public class Equipo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public void agregarJugador(Jugador jugador) {
+        if (indiceJugador < 5) {  // Asegúrate de no exceder los 5 jugadores
+            this.jugadores[indiceJugador] = jugador;
+            indiceJugador++;
+        } else {
+            System.out.println("El equipo ya tiene 5 jugadores");
+        }
     }
 }
